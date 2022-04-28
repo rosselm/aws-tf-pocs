@@ -13,10 +13,10 @@ provider "aws" {
   profile = "martin.rosselle"
 
   default_tags {
-   tags = {
-     Terraform   = true
-     Owner       = "Martin Rosselle"
-     Project     = "POC"
-   }
- }
+    tags = {
+      Terraform = true
+      Owner     = "Martin Rosselle"
+      Project   = "POC"
+    }
+  }
 }

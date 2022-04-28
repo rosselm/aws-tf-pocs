@@ -56,12 +56,12 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "ec2_ssm" {
-  role = aws_iam_role.ec2_ssm.name
+  role       = aws_iam_role.ec2_ssm.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 resource "aws_security_group" "vpce" {
-  name = "vpce"
+  name        = "vpce"
   description = "Allow inbound https traffic from the vpc on interface vpc endpoint"
   vpc_id      = local.vpc_id
 

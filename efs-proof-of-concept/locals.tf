@@ -31,7 +31,7 @@ locals {
   ec2 = {
     instance_type = "t2.nano"
     ami           = "ami-0006ba1ba3732dd33" # AWS Linux 2
-    kms_key_id = data.aws_kms_key.ebs.arn
+    kms_key_id    = data.aws_kms_key.ebs.arn
   }
 
   efs = {

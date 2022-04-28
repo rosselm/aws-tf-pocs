@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "rsync" {
 }
 
 resource "aws_launch_template" "rsync" {
-  name_prefix            = "rsync"
+  name_prefix = "rsync"
 
   block_device_mappings {
     device_name = "/dev/xvda"
@@ -38,8 +38,8 @@ resource "aws_launch_template" "rsync" {
     ebs {
       volume_size = 20
       volume_type = "gp2"
-      encrypted = true
-      kms_key_id = local.ec2.kms_key_id
+      encrypted   = true
+      kms_key_id  = local.ec2.kms_key_id
     }
   }
 

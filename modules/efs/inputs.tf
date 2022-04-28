@@ -6,10 +6,6 @@ variable "subnet_ids" {
   type = list(string)
 }
 
-# variable "region" {
-#   type = string
-# }
-
 variable "kms_key_id" {
   description = "The ARN for the KMS encryption key"
   type        = string

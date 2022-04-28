@@ -6,7 +6,7 @@ write_files:
   owner: 'root:root'
   permissions: '0740'
   content: |
-    echo "mounting efs file system"
+    echo "TODO: mounting efs file system"
 
 # put your commands here
 runcmd:

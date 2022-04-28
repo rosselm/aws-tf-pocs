@@ -114,7 +114,7 @@ resource "aws_lb_target_group" "rsync_tcp_22" {
 
 # security group to attach to our ec2s
 resource "aws_security_group" "ec2" {
-  name        = "efs"
+  name        = "ec2"
   description = "Allow inbound ssh traffic from the vpc"
   vpc_id      = local.vpc_id
 

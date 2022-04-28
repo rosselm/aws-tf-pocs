@@ -6,7 +6,7 @@ resource "aws_autoscaling_group" "rsync" {
   max_size                  = 1
   min_size                  = 1
   desired_capacity          = 1
-  health_check_type         = "ELB"
+  health_check_type         = "EC2"
   health_check_grace_period = 300
   force_delete              = true
   vpc_zone_identifier       = local.subnet_ids
@@ -33,7 +33,7 @@ resource "aws_launch_template" "rsync" {
   name_prefix            = "rsync"
 
   block_device_mappings {
-    device_name = "/dev/sda1"
+    device_name = "/dev/xvda"
 
     ebs {
       volume_size = 20
@@ -61,6 +61,10 @@ resource "aws_launch_template" "rsync" {
     tags = {
       Name = "rsync-target"
     }
+  }
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_ssm.name
   }
 
   user_data = filebase64("${path.module}/user-data-rsync-target-ec2.cloud")

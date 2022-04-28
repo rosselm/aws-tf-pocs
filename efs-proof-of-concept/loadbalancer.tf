@@ -29,7 +29,7 @@ resource "aws_lb_target_group" "rsync_tcp_22" {
   name        = "rsync-tcp-22"
   port        = 22
   protocol    = "TCP"
-  target_type = "ip"
+  target_type = "instance"
 
   vpc_id            = local.vpc_id
   proxy_protocol_v2 = false

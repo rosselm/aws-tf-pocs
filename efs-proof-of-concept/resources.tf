@@ -31,9 +31,39 @@ resource "aws_autoscaling_group" "rsync" {
 
 resource "aws_launch_template" "rsync" {
   name_prefix            = "rsync"
+
+  block_device_mappings {
+    device_name = "/dev/sda1"
+
+    ebs {
+      volume_size = 20
+      volume_type = "gp2"
+      encrypted = true
+      kms_key_id = local.ec2.kms_key_id
+    }
+  }
+
+  metadata_options {
+    http_endpoint = "enabled"
+  }
+
+  monitoring {
+    enabled = true
+  }
+
   image_id               = local.ec2.ami
   instance_type          = local.ec2.instance_type
   vpc_security_group_ids = [aws_security_group.ec2.id]
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = {
+      Name = "rsync-target"
+    }
+  }
+
+  user_data = filebase64("${path.module}/user-data-rsync-target-ec2.cloud")
 }
 
 # network load balancer

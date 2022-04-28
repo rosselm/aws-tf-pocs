@@ -1,0 +1,16 @@
+#cloud-config
+
+# put your files here
+write_files:
+- path: /usr/local/src/mount_efs.sh
+  owner: 'root:root'
+  permissions: '0740'
+  content: |
+    echo "mounting efs file system"
+
+# put your commands here
+runcmd:
+- /usr/local/src/mount_efs.sh
+- echo "you can execute whatever you want - running as root during cloud init - no need for sudo"
+- mkdir -p /var/log/cloud-init-user-logs && chmod --recursive +r /var/log/cloud-init-user-logs
+- echo "you can redirect to a file for inspection later on " >> /var/log/cloud-init-user-logs/example.log
